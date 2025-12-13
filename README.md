@@ -8,12 +8,12 @@ Ogni progetto è organizzato in modo indipendente all'interno della cartella pri
   
 
 Docker/  
-├── Docker_Example/  
-│ └── ...  
-├── Altro_Progetto/  
-│ └── ...  
-├── LICENSE  
-└── README.md  
+ ├── Docker_Example/  
+ │ └── ...  
+ ├── Altro_Progetto/  
+ │ └── ...  
+ ├── LICENSE  
+ └── README.md  
 
 
 - Ogni cartella all'interno di `Docker/` rappresenta un progetto Docker separato.  
@@ -27,4 +27,7 @@ Docker/
 ## Licenza
 
 La repository è rilasciata sotto licenza presente nel file `LICENSE`.
+
+## Autore
+- Andrea De Cao
 

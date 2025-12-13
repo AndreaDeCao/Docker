@@ -1,0 +1,57 @@
+#version: "3.9"
+
+services:
+  db-users:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: users
+      POSTGRES_PASSWORD: userspass
+      POSTGRES_DB: usersdb
+    volumes:
+      - users_data:/var/lib/postgresql/data
+
+  db-orders:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: orders
+      POSTGRES_PASSWORD: orderspass
+      POSTGRES_DB: ordersdb
+    volumes:
+      - orders_data:/var/lib/postgresql/data
+      - ./orders-service/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  users:
+    build: ./users-service
+    environment:
+      DB_HOST_USERS: db-users
+      DB_USER_USERS: users
+      DB_PASS_USERS: userspass
+      DB_NAME_USERS: usersdb
+    depends_on:
+      - db-users
+    ports:
+      - "4001:4001"
+
+  orders:
+    build: ./orders-service
+    environment:
+      DB_HOST_ORDERS: db-orders
+      DB_USER_ORDERS: orders
+      DB_PASS_ORDERS: orderspass
+      DB_NAME_ORDERS: ordersdb
+    depends_on:
+      - db-orders
+    ports:
+      - "4002:4002"
+
+  gateway:
+    build: ./api-gateway
+    depends_on:
+      - users
+      - orders
+    ports:
+      - "4000:4000"
+
+volumes:
+  users_data:
+  orders_data:

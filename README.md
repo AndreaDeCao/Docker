@@ -1,4 +1,4 @@
-# Docker_Example Repository
+# Docker Repository
 
 Questa repository è una **collezione di progetti Docker in sviluppo**. 
 Ogni progetto è organizzato in modo indipendente all'interno della cartella principale `Docker_Example/` e dispone del proprio **README** specifico con dettagli sul funzionamento, la configurazione e l'esecuzione.  

@@ -96,29 +96,43 @@ L’API Gateway inoltra automaticamente le richieste ai rispettivi servizi.
 ## Project Structure
 
 ```
-/final_project
-│
-├── api-gateway/
-│   ├── src/gateway.js
-│   └── src/routes.js
-│   └── Dockerfile
-│
-├── users-service/
-│   ├── src/app.js
-│   ├── src/usersController.js
-│   ├── src/db.js
-│   └── src/auth.js
-│   └── Dockerfile
-│
-├── orders-service/
-│   ├── src/app.js
-│   ├── src/ordersController.js
-│   ├── src/db.js
-│   └── src/middleware.js
-│   └── Dockerfile
-│
-├── docker-compose.yml
-└── README.md
+Docker/
+└── Docker_Example/
+    ├── api-gateway/
+    │   ├── src/
+    │   │   ├── gateway.js
+    │   │   └── routes.js
+    │   ├── Dockerfile
+    │   └── package.json
+    │
+    ├── orders-service/
+    │   ├── db/
+    │   │   └── init.sql
+    │   ├── src/
+    │   │   ├── app.js
+    │   │   ├── db.js
+    │   │   ├── middleware.js
+    │   │   └── ordersController.js
+    │   ├── Dockerfile
+    │   └── package.json
+    │
+    ├── users-service/
+    │   ├── src/
+    │   │   ├── app.js
+    │   │   ├── auth.js
+    │   │   ├── db.js
+    │   │   └── usersController.js
+    │   ├── Dockerfile
+    │   └── package.json
+    │
+    ├── file/
+    │   └── Mini_Guida_Docker.pdf
+    │
+    ├── docker-compose.yml
+    └── README.md   
+└── LICENSE
+
+
 ```
 
 ---
@@ -157,4 +171,5 @@ Andrea De Cao
 ## License
 
 Questo progetto è rilasciato sotto la **MIT License**.
+
 

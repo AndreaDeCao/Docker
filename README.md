@@ -1,7 +1,7 @@
 # Docker Repository
 
 Questa repository è una **collezione di progetti Docker in sviluppo**.   
-Ogni progetto è organizzato in modo indipendente all'interno della cartella principale `Docker_Example/` e dispone del proprio **README** specifico con dettagli sul funzionamento, la configurazione e l'esecuzione.  
+Ogni progetto è organizzato in modo indipendente all'interno della cartella principale `Docker/` e dispone del proprio **README** specifico con dettagli sul funzionamento, la configurazione e l'esecuzione.  
 
 
 ## Struttura della repository  
@@ -10,7 +10,7 @@ Ogni progetto è organizzato in modo indipendente all'interno della cartella pri
 Docker/  
 ├── Docker_Example/  
 │ └── ...  
-├── Altro_Progetto1/  
+├── Altro_Progetto/  
 │ └── ...  
 ├── LICENSE  
 └── README.md  

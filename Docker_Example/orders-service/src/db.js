@@ -17,7 +17,7 @@ export const db = new Pool({
   user: process.env.DB_USER_ORDERS || "postgres",
   password: process.env.DB_PASS_ORDERS || "postgres",
   database: process.env.DB_NAME_ORDERS || "ordersdb",
-  port: 5432
+  port: 5432 //porta standard PostgreSQL nel container
 });
 
 // Test di connessione all'avvio

@@ -1,0 +1,100 @@
+dividere il file .yml in due 
+
+    -   docker-compose.infrastructure.yml   //qui va la parte del db
+    -   docker-compose.app.yml              //qui va la parte dei servizi
+
+Architettura “realistica” (consigliata)
+Separo:
+Infrastructure layer
+    -   Database
+    -   Cache
+    -   Message broker
+Application layer
+    -   Microservizi
+    -   API Gateway
+
+Perchè? --> Il DB:  vive più a lungo
+                    cambia meno spesso
+
+Inoltre per ambiente di sviluppo / test
+    -   Avvio solo il DB
+    -   testo un singolo servizio
+    -   riuso lo stesso DB senza modificarlo
+
+Come? -->       docker-compose -f docker-compose.infrastructure.yml up
+                docker-compose -f docker-compose.app.yml up
+
+es per parte db
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: ordersdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./orders-service/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432" #per container e per uso da pc
+    networks:   #rete interna condivisa
+      - backend # affinche i due .yml comunichino
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:
+
+es per parte services
+
+services:
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - users-service
+      - orders-service
+    networks:
+      - backend
+
+  users-service:
+    build: ./users-service
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  orders-service:
+    build: ./orders-service
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+networks:   #stessa rete condivisa per comunicare
+  backend:
+
+
+
+
+QUINDI quando faccio 
+    -   docker-compose \
+        -f docker-compose.db.yml \
+        -f docker-compose.services.yml \
+        up
+        (se voglio avviarli assieme sennò con deu comandi)
+
+Docker automaticamente: 
+    -   Crea la rete backend (se non esiste)
+    -   Avvia postgres
+    -   Avvia i microservizi
+    -   Collega tutti alla stessa rete
+    -   Registra i nomi (postgres, orders-service, ecc.) nel DNS interno
+
+La rete backend è definita esclusivamente nei file Docker Compose e permette la comunicazione interna tra i container tramite DNS. 
+Il codice applicativo resta indipendente dall’infrastruttura.”

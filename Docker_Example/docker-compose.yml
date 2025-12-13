@@ -2,23 +2,23 @@
 
 services:
   db-users:
-    image: postgres:15-alpine
+    image: postgres:15-alpine #docker scariva l'immagine di postgres versione 15 con alpine
     environment:
       POSTGRES_USER: users
       POSTGRES_PASSWORD: userspass
       POSTGRES_DB: usersdb
     volumes:
-      - users_data:/var/lib/postgresql/data
+      - users_data:/var/lib/postgresql/data #serve per la persistenza dei dati
 
   db-orders:
-    image: postgres:15-alpine
+    image: postgres:15-alpine #docker scariva l'immagine di postgres versione 15 con alpine
     environment:
       POSTGRES_USER: orders
       POSTGRES_PASSWORD: orderspass
       POSTGRES_DB: ordersdb
     volumes:
-      - orders_data:/var/lib/postgresql/data
-      - ./orders-service/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - orders_data:/var/lib/postgresql/data #serve per la persistenza dei dati
+      - ./orders-service/db/init.sql:/docker-entrypoint-initdb.d/init.sql #per inizializzare il db con uno script sql
 
   users:
     build: ./users-service

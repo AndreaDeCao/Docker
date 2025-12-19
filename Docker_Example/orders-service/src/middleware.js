@@ -1,13 +1,13 @@
 // middleware.js
 // Middleware comuni per Orders service
 
-// 1️⃣ Logger: logga tutte le richieste
+// Logger: logga tutte le richieste
 export function logger(req, res, next) {
   console.log(`${req.method} ${req.url} - ${new Date().toISOString()}`);
   next(); // passa al prossimo middleware / route handler
 }
 
-// 2️⃣ Validazione ordine: controlla body di POST /orders
+// 2Validazione ordine: controlla body di POST /orders
 export function validateOrder(req, res, next) {
   const { item, quantity } = req.body;
 
@@ -22,13 +22,13 @@ export function validateOrder(req, res, next) {
   next(); // tutto ok, passa al controller
 }
 
-// 3️⃣ Gestione errori centralizzata
+// Gestione errori centralizzata
 export function errorHandler(err, req, res, next) {
   console.error(`[ERROR] ${req.method} ${req.url} - ${err.stack}`);
   res.status(500).json({ error: "Internal Server Error" });
 }
 
-// 4️⃣ Autenticazione semplice (opzionale)
+// Autenticazione semplice (opzionale)
 export function checkAuth(req, res, next) {
   const authHeader = req.headers["authorization"];
   if (!authHeader) {

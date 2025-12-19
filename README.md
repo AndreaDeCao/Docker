@@ -1,19 +1,19 @@
 # Docker Repository
 
 Questa repository è una **collezione di progetti Docker in sviluppo**.   
-Ogni progetto è organizzato in modo indipendente all'interno della cartella principale `Docker_Example/` e dispone del proprio **README** specifico con dettagli sul funzionamento, la configurazione e l'esecuzione.  
+Ogni progetto è organizzato in modo indipendente all'interno della cartella principale `Docker/` e dispone del proprio **README** specifico con dettagli sul funzionamento, la configurazione e l'esecuzione.  
 
 
 ## Struttura della repository  
   
 
 Docker/  
-├── Docker_Example/  
-│ └── ...  
-├── Altro_Progetto1/  
-│ └── ...  
-├── LICENSE  
-└── README.md  
+ ├── Docker_Example/  
+ │ └── ...  
+ ├── Altro_Progetto/  
+ │ └── ...  
+ ├── LICENSE  
+ └── README.md  
 
 
 - Ogni cartella all'interno di `Docker/` rappresenta un progetto Docker separato.  
@@ -27,4 +27,7 @@ Docker/
 ## Licenza
 
 La repository è rilasciata sotto licenza presente nel file `LICENSE`.
+
+## Autore
+- Andrea De Cao
 

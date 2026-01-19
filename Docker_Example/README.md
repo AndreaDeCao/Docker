@@ -1,4 +1,4 @@
-# 🏗️ Microservices Architecture Project – UF14
+# Microservices Architecture Project – UF14
 
 [![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker)](https://www.docker.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-v18-green?logo=node.js)](https://nodejs.org/)

@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  order-service:
+    build: ./order-service           # Costruisce l’immagine a partire dal Dockerfile
+    container_name: order-service
+    ports:
+      - "3001:3000"                  # Espone il servizio verso l’esterno
+    environment:
+      - BROKER_HOST=broker           # Passa configurazioni via variabile ambiente
+    depends_on:
+      - broker                        # Assicura che il broker parta prima
+    networks:
+      - backend
+
+  payment-service:
+    build: ./payment-service
+    container_name: payment-service
+    environment:
+      - BROKER_HOST=broker
+    depends_on:
+      - broker
+    networks:
+      - backend
+
+  broker:
+    image: rabbitmq:3-management       # Broker pronto all’uso
+    container_name: broker
+    ports:
+      - "15672:15672"                  # Console di RabbitMQ per sviluppo
+    networks:
+      - backend
+
+networks:
+  backend:

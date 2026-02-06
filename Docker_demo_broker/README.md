@@ -70,7 +70,7 @@ Contributi sono benvenuti!
 
 ## Author
 
-**UF14 Course – High Education Program**
+**UF14 Course – High Education Program**  
 Andrea De Cao
 
 ---

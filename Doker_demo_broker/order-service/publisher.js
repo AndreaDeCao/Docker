@@ -7,8 +7,10 @@ async function publishOrderCreated() {
     const channel = await conn.createChannel();
 
     const exchange = 'orders.exchange';
-    await channel.assertExchange(exchange, 'fanout', { durable: true });
-    channel.publish(exchange, '', Buffer.from('ORDER_CREATED'));
+//    await channel.assertExchange(exchange, 'fanout', { durable: true });
+//    channel.publish(exchange, '', Buffer.from('ORDER_CREATED'));
+    await channel.assertExchange(exchange, 'fanout', { durable: true }); 
+    channel.publish(exchange, '', Buffer.from('ORDER_CREATED'), { persistent: true });  //persistent: true → i messaggi non vengono persi se il consumer non c’è
 
     console.log('OrderCreated event published');
     await channel.close();
